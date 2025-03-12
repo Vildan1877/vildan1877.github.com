@@ -14,38 +14,49 @@
             max-width: 90%;
             height: auto;
             margin-top: 20px;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .show {
+            opacity: 1;
         }
         .controls {
             margin-top: 20px;
         }
         button {
             padding: 10px 20px;
-            font-size: 16px;
+            font-size: 24px;
             margin: 5px;
             cursor: pointer;
+            border: none;
+            background: none;
         }
     </style>
 </head>
 <body>
 
-    <h1>Просмотр слайдов</h1>
-    <img id="slide" src="Слайд1.JPG" alt="Слайд 1">
+    <img id="slide" class="show" src="Слайд1.JPG" alt="Слайд 1">
     
     <div class="controls">
-        <button onclick="prevSlide()">Назад</button>
-        <button onclick="nextSlide()">Вперёд</button>
+        <button onclick="prevSlide()">⬅️</button>
+        <button onclick="nextSlide()">➡️</button>
     </div>
 
     <script>
         let slides = [];
         for (let i = 1; i <= 41; i++) {
-            slides.push(`Слайд${i}.JPG`); // Теперь .JPG с заглавными буквами
+            slides.push(`Слайд${i}.JPG`);
         }
         let currentSlide = 0;
 
         function showSlide(index) {
             if (index >= 0 && index < slides.length) {
-                document.getElementById("slide").src = slides[index];
+                let img = document.getElementById("slide");
+                img.classList.remove("show");
+                setTimeout(() => {
+                    img.src = slides[index];
+                    img.classList.add("show");
+                }, 300);
                 currentSlide = index;
             }
         }
@@ -64,13 +75,4 @@
     </script>
 
 </body>
-</html> 
-
-
-
-
-
-
-
-
-
+</html>
