@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Просмотр слайдов</title>
+    <style>
+        body {
+            text-align: center;
+            background: #f4f4f4;
+            font-family: Arial, sans-serif;
+        }
+        img {
+            max-width: 90%;
+            height: auto;
+            margin-top: 20px;
+        }
+        .controls {
+            margin-top: 20px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Просмотр слайдов</h1>
+    <img id="slide" src="Слайд1.jpg" alt="Слайд 1">
+    
+    <div class="controls">
+        <button onclick="prevSlide()">Назад</button>
+        <button onclick="nextSlide()">Вперёд</button>
+    </div>
+
+    <script>
+        let slides = [];
+        for (let i = 1; i <= 41; i++) {
+            slides.push(`Слайд${i}.jpg`);
+        }
+        let currentSlide = 0;
+
+        function showSlide(index) {
+            if (index >= 0 && index < slides.length) {
+                document.getElementById("slide").src = slides[index];
+                currentSlide = index;
+            }
+        }
+
+        function nextSlide() {
+            if (currentSlide < slides.length - 1) {
+                showSlide(currentSlide + 1);
+            }
+        }
+
+        function prevSlide() {
+            if (currentSlide > 0) {
+                showSlide(currentSlide - 1);
+            }
+        }
+    </script>
+
+</body>
+</html>
