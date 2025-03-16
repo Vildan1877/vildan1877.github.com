@@ -4,6 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Слайд-шоу</title>
+    <meta property="og:title" content="Mental Heals in Construction Cost Consultancy">
+    <meta property="og:description" content="Mental Heals in Construction Cost Consultancy">
+    <meta property="og:image" content="https://vildan1877.github.io/preview.jpg">
+    <meta property="og:url" content="https://vildan1877.github.io/">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
     <style>
         * {
             margin: 0;
@@ -26,12 +32,12 @@
             width: 100%;
             max-height: 80vh;
             border-radius: 10px;
-            opacity: 0;
-            transition: opacity 0.8s ease-in-out;
+            opacity: 1;
+            transition: opacity 0.3s ease-in-out;
             box-shadow: 0px 0px 15px rgba(255, 255, 255, 0.2);
         }
-        .show {
-            opacity: 1;
+        .fade-out {
+            opacity: 0;
         }
         .controls {
             position: absolute;
@@ -58,7 +64,7 @@
 <body>
 
     <div class="slideshow-container">
-        <img id="slide" class="show" src="Слайд1.jpeg" alt="Слайд 1">
+        <img id="slide" src="Слайд1.jpeg" alt="Слайд 1">
         <div class="controls">
             <button onclick="prevSlide()">◀</button>
             <button onclick="nextSlide()">▶</button>
@@ -71,15 +77,15 @@
             slides.push(`Слайд${i}.jpeg`);
         }
         let currentSlide = 0;
+        let img = document.getElementById("slide");
 
         function showSlide(index) {
             if (index >= 0 && index < slides.length) {
-                let img = document.getElementById("slide");
-                img.classList.remove("show");
+                img.classList.add("fade-out");
                 setTimeout(() => {
                     img.src = slides[index];
-                    img.classList.add("show");
-                }, 300);
+                    img.classList.remove("fade-out");
+                }, 150); // Уменьшил задержку для плавного перехода
                 currentSlide = index;
             }
         }
